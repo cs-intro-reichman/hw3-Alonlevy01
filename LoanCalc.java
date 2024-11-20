@@ -57,18 +57,22 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
-		double payment = 0;
-		double min = 0;
+		double payment =0,balance;
+		double min =loan/n;
 		double max = loan;
 		iterationCounter = 0;
-		while (endBalance(loan , rate , n , payment)>epsilon || endBalance(loan , rate , n , payment)<0 ) {
+		while (max-min>epsilon) {
 			payment = (max+min)/2;
+			balance = endBalance(loan, rate, n, payment);
 			iterationCounter++;
-			if (endBalance(loan, rate, n, payment)<epsilon) {
-				max = payment;
+			if (Math.abs(balance)<epsilon) {
+				
 			}
-			if (endBalance(loan, rate, n, payment)>epsilon) {
+			else if (balance>0) {
 				min = payment;
+			}
+			else {
+				max = payment;
 			}
 		}
 		return payment;
