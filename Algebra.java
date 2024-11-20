@@ -26,8 +26,15 @@ public class Algebra {
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
 		int counter = x1;
-		for (int i=0;i<x2;i++){
-			counter++;
+		if (x2>0) {
+			for (int i=0;i<x2;i++){
+				counter++;
+			}
+		}
+		else {
+			for (int i=0;i>x2;i--){
+				counter--;
+			}
 		}
 		return counter;
 	}
@@ -35,8 +42,15 @@ public class Algebra {
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
 		int counter = x1;
-		for (int i=0;i<x2;i++){
-			counter--;
+		if (x2>0) {
+			for (int i=0;i<x2;i++){
+				counter--;
+			}
+		}	
+		else {
+			for (int i=0;i>x2;i--){
+				counter++;
+			}
 		}
 		return counter;
 	}
@@ -44,8 +58,14 @@ public class Algebra {
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
 		int counter = 0;
-		for (int i=0;i<x2;i++){
-			counter=plus(counter,x1);
+		int x1abs = x1; int x2abs =x2;
+		if (x1<0) x1abs=minus(0,x1);
+		if (x2<0) x2abs=minus(0,x2);
+		for (int i=0;i<x2abs;i++){
+			counter=plus(counter,x1abs);
+		}
+		if (x1<0 ^ x2<0) {
+			counter = minus(0,counter);
 		}
 		return counter;
 		
@@ -65,11 +85,17 @@ public class Algebra {
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-		int checkIfUnderX2 = x1;
+		int x1abs = x1; int x2abs =x2;
+		if (x1<0) x1abs=minus(0,x1);
+		if (x2<0) x2abs=minus(0,x2);
+		int checkIfUnderX2 = x1abs;
 		int counter = 0;
-		while (checkIfUnderX2>=x2) {
-			checkIfUnderX2=minus(checkIfUnderX2, x2);
+		while (checkIfUnderX2>=x2abs) {
+			checkIfUnderX2=minus(checkIfUnderX2, x2abs);
 			counter++;
+		}
+		if (x1<0 ^ x2<0){
+			counter = minus(0,counter);
 		}
 		return counter;
 	}
