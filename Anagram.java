@@ -30,7 +30,7 @@ public class Anagram {
 	public static boolean isAnagram(String str1, String str2) {
 		str1=preProcess(str1);
 		str2=preProcess(str2);
-		boolean check = false;
+		boolean check = true;
 		String str2temp = str2;
 		for (int i=0;i<str1.length();i++){
 			check = false;
@@ -59,7 +59,7 @@ public class Anagram {
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
-		String alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+		String alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ";
 		String newString = "";
 		for (int i=0;i<str.length();i++) {
 			for (int j=0;j<alphabet.length();j++) {
